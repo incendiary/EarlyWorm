@@ -1,0 +1,16 @@
+repos:
+  # Secret scanning — blocks commits containing credentials, keys, or tokens
+  - repo: https://github.com/gitleaks/gitleaks
+    rev: v8.30.1
+    hooks:
+      - id: gitleaks
+
+  # C# formatting — enforces .editorconfig rules via dotnet format
+  - repo: local
+    hooks:
+      - id: dotnet-format
+        name: dotnet format
+        language: system
+        entry: dotnet format EarlyWorm.sln --verify-no-changes
+        pass_filenames: false
+        files: \.cs$
